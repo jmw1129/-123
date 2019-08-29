@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html,
+#app,
+#shou,
+#ding,
+#sou {
+  margin: 0;
+  padding: 0;
+  font-size: 0.16rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#ding > header,
+#sou > header,
+#shou > header,
+.ding_a,
+.ding_b {
+  width: 100%;
+  height: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.1rem;
+}
+
+.ding_h,
+.ding_a1,
+.ding_b1,
+.li_left {
+  float: left;
+}
+
+.ding_h1,
+.ding_a2,
+.ding_b2,
+.li_right {
+  float: right;
+}
+
+.hot {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.15rem;
+  background: white;
+}
+
+.hot div {
+  border: 1px solid gainsboro;
+}
+
+.hot .title {
+  width: 100%;
+  height: 0.35rem;
+  font-size: 0.14rem;
+  color: gray;
+  line-height: 0.35rem;
+  padding-left: 0.1rem;
+}
+
+.hot .city {
+  width: 25%;
+  height: 0.4rem;
+  text-align: center;
+  line-height: 0.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+#shou > header,
+footer {
+  width: 100%;
+  height: 0.5rem;
+  display: flex;
+  position: fixed;
+  left: 0;
+  z-index: 11;
+}
+
+ul, li, h3 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.shou_f a {
+  color: gray;
+}
+
+.shou_f .router-link-active i {
+  color: #3B93E5;
+}
+
+header {
+  width: 100%;
+  height: 0.5rem;
+  color: white;
+  background: #3B93E5;
+  line-height: 0.5rem;
+}
+
+header a {
+  color: white;
+}
+
+header .head {
+  width: 100%;
+  height: 100%;
+}
+
+header .head .he {
+  width: 100%;
+  height: 0.5rem;
+}
+
+header .head .he .left {
+  width: 15%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+header .head .he .content {
+  width: 70%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  font-size: 0.2rem;
+}
+
+header .head .he .right {
+  width: 15%;
+  height: 100%;
+  float: right;
+  text-align: center;
+}

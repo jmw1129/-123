@@ -27,17 +27,17 @@
       <div class="s_h">搜索历史</div>
       <!-- 查找所有 -->
       <div class="s_nei" v-for='(v,i) in history' :key='i' @click='shis(v)' v-show='show==true'>
-        <router-link :to="'/Shou/Take?name='+`${v.name}`+'&geohash'+`${v.geohash}`">
+        <!-- <router-link :to="'/Shou/Take?name='+`${v.name}`+'&geohash'+`${v.geohash}`"> -->
         <div style="color: black">{{v.name}}</div>
         <div class="s_n">{{v.address}}</div>
-        </router-link>
+        <!-- </router-link> -->
       </div>
       <!-- 搜索历史 -->
-      <div class="s_nei his" v-for='(v,i) in shuju' :key='i' v-show='show==false'>
-        <router-link :to="'/Shou/Take?name='+`${v.name}`+'&geohash'+`${v.geohash}`">
-        <div style="color: black">{{v.name}}</div>
+      <div class="s_nei his" v-for='(v,i) in shuju' :key='i'  @click='shis(v)' v-show='show==false'>
+        <!-- <router-link :to="'/Shou/Take?name='+`${v.name}`+'&geohash'+`${v.geohash}`"> -->
+        <div style="color: black" @click="chuan(v)">{{v.name}}</div>
         <div class="s_n">{{v.address}}</div>
-        </router-link>
+        <!-- </router-link> -->
       </div>
     </div>
     <!-- 搜索历史结束 -->
@@ -77,20 +77,24 @@
       },
       // 搜索历史
       shis(v){
-        // console.log(v)
+        // console.log(v.geohash)
         this.show = false
         var arr = JSON.parse(localStorage.getItem('data'))||[]
-        var obj = {name:v.name,address:v.address}
+        var obj = {name:v.name,address:v.address,geohash:v.geohash}
+          this.$store.commit("add",v.geohash)
         
         var index = arr.findIndex((item,value,arr)=>{
           return v.name == item.name
         })
+        this.$router.push({path:"/Shou/Take",query:{geohash:v.geohash}})
         if(index==-1){
           arr.push(obj)
+          
         }else{
           return false
         }
-        localStorage.setItem('data',JSON.stringify(arr))
+        
+          localStorage.setItem('data',JSON.stringify(arr))
       },
       // 清空
       clear(){
@@ -98,8 +102,10 @@
         arr = []
         this.shuju = arr
         localStorage.setItem('data',JSON.stringify(arr))
+      },
+      chuan(v){
+         this.$router.push(`/Shou/My?name=${v.name}`)
       }
-
     },
     mounted() {
       // id
@@ -117,11 +123,6 @@
 
       var arr = JSON.parse(localStorage.getItem('data'))||[]
       this.shuju = arr
-      
-     
-      
-      
-      
       
        
     },

@@ -109,13 +109,19 @@ export default{
           this.userid=res.data.user_id;
           if(res.data.status==0){
           // 判读那输入框不为空
-            if(this.user!==""&&this.user!==""&&this.numcode!==""){
+            if(this.user!==""&&this.password!==""&&this.numcode!==""){
               MessageBox(res.data.message)
             }
           }else{
-            localStorage.setItem('login',JSON.stringify({userid:this.userid,code:this.code,password:this.password}))
+            localStorage.setItem('login',JSON.stringify({username:this.username,code:this.code,password:this.password}))
             // this.$store.state.login = this.code
-            this.$store.commit("login",this.userid)
+            // console.log(res.data.id)
+            let obj={
+              user_id:res.data.id,
+              username:res.data.username
+            }
+            this.$store.commit("login",obj)
+            // console.log(this.username)
             this.$router.push('/Ding')
           }
           if(this.user==''){

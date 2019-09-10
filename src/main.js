@@ -9,15 +9,15 @@ import VueScroller from 'vue-scroller'
 import '@/style/index.scss'
 import {  Switch } from 'mint-ui'
 import store from '@/store/index'
-Vue.component(Switch.name,Switch)
+Vue.component(Switch.name , Switch)
 Vue.config.productionTip = false
 Vue.use(VueScroller)
 Vue.use(Icon)
 
-import Vant from 'vant';
-import 'vant/lib/index.css';
+import Vant from 'vant'
+import 'vant/lib/index.css'
 
-Vue.use(Vant);
+Vue.use(Vant)
 
 new Vue({
   el: '#app',

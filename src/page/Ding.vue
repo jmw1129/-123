@@ -72,9 +72,9 @@ import axios from 'axios'
     },
     
     created(){
-      if(localStorage.getItem('login')){
-        this.flag = true
-      }
+      // if(localStorage.getItem('login')){
+      //   this.flag = true
+      // }
       
     },
     mounted() {

@@ -32,15 +32,17 @@
       <div class="clear">清空搜索历史</div>
     </div>
     <!-- 搜索历史结束 -->
+    <Foot></Foot>
 </div>
 </template>
 
 <script>
   import axios from 'axios'
   import Head from '@/page/header/Head'
+  import Foot from '@/hand/footer'
   export default {
     name: 'Search',
-    components:{Head},
+    components:{Head,Foot},
     data() {
       return {
 

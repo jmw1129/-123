@@ -1,87 +1,24 @@
 <template>
   <div id="shou">
     
- 
-    <!-- 内容开始 -->
-    <!-- <div class="shou_content"> -->
-      <!-- 导航开始 -->
-      <!-- <div class="shou_nav swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide shou_nav_n">
-              <ul v-for='(v,i) in swiper[0]' :key="i">
-                <img :src="'https://fuss10.elemecdn.com'+v.image_url" />
-                <li>{{v.title}}</li>
-              </ul>
-            </div>
-            <div class="swiper-slide shou_nav_n">
-              <ul v-for='(v,i) in swiper[1]' :key="i">
-                <img :src="'https://fuss10.elemecdn.com'+v.image_url" />
-                <li>{{v.title}}</li>
-              </ul>
-            </div>
-        </div>
-      </div> -->
-      <!-- 导航结束 -->
-      <!-- 附近商家开始 -->
-      <!-- <div class="shops">
-        <div class="fujin">
-          <i class="el-icon-shopping-cart-1"></i>
-          附近商家
-        </div> -->
-        <!-- 单个商家开始 -->
-        <!-- <div class="shops_one" v-for='(v,i) in shops' :key="i">
-          <div class="one_a"><img :src="'https://elm.cangdu.org/img/'+v.image_path" /></div>
-          <ul>
-            <li class="ul_a">
-              <div class="li_left">
-                <div>品牌</div>
-                <h3>{{v.name}}</h3>
-              </div>
-              <div class="li_right">
-                <div v-for='(item,value) in v.supports' :key="value">{{item.icon_name}}</div>
-              </div>
-            </li>
-            <li class="ul_b">
-              <div class="li_left">
-                  <el-rate v-model="v.rating" value=v.rating ></el-rate>
-                <div class="left_rating">{{v.rating}}</div>
-                <div class="left_num">月售{{v.recent_order_num}}单</div>
-              </div>
-              <div class="li_right">
-                <div class="right_text">{{v.delivery_mode.text}}</div>
-                <div class="right_name">{{v.supports[1].name}}</div>
-              </div>
-            </li>
-            <li class="ul_c">
-              <div class="li_left">￥{{v.float_minimum_order_amount}} / 配送费约￥{{v.float_delivery_fee}}</div>
-              <div class="li_right">175.8公里 / <span>28分钟</span></div>
-            </li>
-          </ul>
-        </div> -->
-        <!-- 单个商家结束 -->
-      <!-- </div> -->
-      <!-- 附近商家结束 -->
-    <!-- </div> -->
-    <!-- 内容结束 -->
-
     <!-- <Take_out></Take_out> -->
         <keep-alive>
         <router-view v-if="!$route.meta.keepAlive"></router-view>
         </keep-alive>
     <!-- 尾部开始 -->
-    <footer>
+    <!-- <footer>
       
       <div class="shou_f">
         <router-link to="/Shou/Take">
-          <i class="el-icon-eleme"></i>
-        <div>外卖</div>
+          <i class="iconfont iconSSS"></i>
+          <div>外卖</div>
         </router-link>
       </div>  
       
       
       <div class="shou_f">
         <router-link to="/Shou/Search">
-        
+         <i class="iconfont iconzhinan"></i>
         <div>搜索</div>
         </router-link>
       </div>
@@ -89,20 +26,19 @@
       
       <div class="shou_f">
         <router-link to="/Shou/Order">
-        
+          <i class="iconfont iconicon-1"></i>
         <div>订单</div>
         </router-link>
       </div>
       
-      
       <div class="shou_f">
         <router-link to="/Shou/My">
-        <i class="el-icon-user"></i>
-        <div>我的</div>
+          <i class="iconfont iconwode"></i>
+          <div>我的</div>
         </router-link>
       </div>
       
-    </footer>
+    </footer> -->
     
     <!-- 尾部结束 -->
   </div>
@@ -120,54 +56,18 @@ import 'swiper/dist/css/swiper.css'
     // components:{Take_out},
     data() {
       return {
-        // swiper:[], // 轮播
-        // shops:[] ,// 附近商家
-        // cname:''
+        
         
       }
     },
     
-    // created() {
-    //   if(this.$route.query.name){
-    //     this.cname = this.$route.query.name
-    //   }else{
-    //     this.cname = '北京'
-    //   }
-      // console.log(this.$route.query.name)
-    // },
-    // created() {
-    //   // 获取轮播数据
-    //   axios.get('http://elm.cangdu.org/v2/index_entry?geohash=39.78493,116.49476&group_type=1&flags[]=F').then((res)=>{
-    //     // console.log(res.data)
-    //     this.swiper=this.getStr(res.data)
-    //   })
-
-    //   // 附近商家
-    //   axios.get('http://elm.cangdu.org/shopping/restaurants?latitude=39.78493&longitude=116.49476&offset=0&limit=30&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=').then((res)=>{
-    //     console.log(res.data)
-    //     this.shops=res.data
-    //   })
-
-    // },
-    // mounted(){
-    //   new Swiper ('.swiper-container', {
-    //   loop: true
-    //   })
-    // },
-    // methods:{
-    //   // 轮播切分数组
-    //     getStr(str) {
-    //         var arr = [];
-    //         for (var i = 0, j = 0; i < str.length; i += 8, j++) {
-    //             arr[j] = str.slice(i, i + 8);
-    //         }
-    //         return arr;
-    //     }
-    // }
+  
   }
 </script>
 
 <style lang="scss">
+
+
 #shou{
   background: #F5F5F5;
   /* 头部开始 */
@@ -333,26 +233,6 @@ import 'swiper/dist/css/swiper.css'
     /* 附近商家结束 */
   }
   /* 内容结束 */
-  /* 尾部开始 */
-  footer{
-    background: white;
-    border-top: 1px solid gainsboro;
-    bottom: 0;
-    /* line-height: 0.5rem; */
-    .shou_f{
-      width: 25%;
-      text-align:center;
-      line-height:0.5rem;
-      /* i{
-        margin-top: 0.05rem;
-        font-size: 0.26rem;
-      } */
-      div{
-        font-size: 0.2rem;
-        color: gray;
-      }
-    }
-  }
-  /* 尾部结束 */
+  
 }
 </style>

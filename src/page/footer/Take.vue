@@ -13,8 +13,8 @@
             </router-link>
           </div>
           <div class="content">
-            <!-- {{this.$route.query.name}} -->
-            {{name}}
+            {{this.$route.query.name}}
+            <!-- {{name}}  -->
           </div>
           <div class="right">
             <router-link to="/Login" v-if='checked==false'>登录注册</router-link>
@@ -66,7 +66,7 @@
           finished-text="没有更多了"
           @load="onLoad"
           >
-         <div class="shops_one" v-for='(v,i) in shops' :key="i">
+         <div class="shops_one" v-for='(v,i) in shops' :key="i" @click="details(v)">
           
          
            <div class="one_a"><img :src="'https://elm.cangdu.org/img/'+v.image_path" /></div>
@@ -113,16 +113,19 @@
 
      </div>
      <!-- 内容结束 -->
+     <Foot></Foot>
   </div>
 </template>
 
 <script>
+
   import Head from '@/page/header/Head'
+  import Foot from '@/hand/footer'
   import Swiper from 'swiper'
   import axios from 'axios'
   export default {
     name: 'Take',
-    components:{Head},
+    components:{Head,Foot},
     data() {
       return {
         swiper:[], // 轮播
@@ -132,7 +135,7 @@
        jiazai:false,
         loading: false,
       finished: false,
-      cheched:"",
+      checked:"",
        userid:"",
         geohash:"",
         latitude:"",
@@ -145,11 +148,7 @@
       if(localStorage.getItem('login')){
       this.flag = true
       }
-      if(this.$route.query.name){
-      this.name = this.$route.query.name
-      }else{
-      this.name = '北京'
-      }
+     this.name=this.$route.query.name
 
 
       // 获取轮播数据
@@ -169,7 +168,7 @@
       this.jiazai=true
       
       axios.get(`http://elm.cangdu.org/shopping/restaurants?latitude='${this.latitude}'&longitude='${this.longitude}'&offset='${this.sum}'&limit=10&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=`).then((res)=>{
-        console.log(res)
+        // console.log(res)
           this.shops=res.data
           this.jiazai=false
       })
@@ -193,28 +192,31 @@
          onLoad() {
             // 异步更新数据
             setTimeout(() => {
-              this.time()
-              // 加载状态结束
-              this.loading = false;
-
-              // 数据全部加载完成
-              if (this.shops.length >= 100) {
-                this.finished = true;
-              }
-            }, 500);
-    },
-    time(){
-       this.num=this.num+10;
+              
+              this.num=this.num+10;
             axios.get(`http://elm.cangdu.org/shopping/restaurants?latitude='${this.latitude}'&longitude='${this.longitude}'&offset=${this.num}&limit=${this.num}&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=`).then((res)=>{
-              console.log(res.data)
-             if(this.shops.length<100){
+              // console.log(res.data)
+             if(this.shops.length<1000){
                this.shops=this.shops.concat(res.data)
              }
              
             })
+              // 加载状态结束
+              this.loading = false;
+
+              // 数据全部加载完成
+              if (this.shops.length >= 1000) {
+                this.finished = true;
+              }
+            }, 2000);
+    },
+    details(v){
+      this.$router.push(`/shipping?id=${v.id}`)
+    }
+      
     }
   }
-    }
+    
   
 </script>
 

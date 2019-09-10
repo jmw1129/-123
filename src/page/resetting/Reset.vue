@@ -15,34 +15,36 @@
         <!-- 表单开始 -->
         <form>
             <!-- 账号 -->
-          <div style="background: white"><input type="text" placeholder="账号" /></div>
+          <div style="background: white"><input type="text" placeholder="账号" v-model="username"/></div>
           <!-- 旧密码 -->
           <div style="background: white">
-            <input type="text" placeholder="旧密码" />
+            <input type="text" placeholder="旧密码" v-model="oldpassWord"/>
           </div>
           <!-- 请输入新密码 -->
           <div style="background: white">
-            <input type="text" placeholder="请输入新密码" />
+            <input type="text" placeholder="请输入新密码" v-model="newpassword"/>
           </div>
           <!-- 请确认密码 -->
           <div style="background: white">
-            <input type="text" placeholder="请确认密码" />
+            <input type="text" placeholder="请确认密码" v-model="confirmpassword"/>
           </div>
           <!-- 验证码 -->
           <div style="background: white">
-            <input type="text" placeholder="验证码" />
+            <input type="text" placeholder="验证码" v-model="captcha_code"/>
             <div class="form_rigth" style="margin-right:0.2rem">
               <!-- 随机数 -->
-              <div class="numb">4232</div>
+              <div class="numb">
+                <img :src="code" alt="">
+              </div>
               <div class="change">
                 <div style="height: 50%;text-align: center;line-height: 0.32rem">看不清</div>
-                <input type="button" value="换一张" />
+                <input type="button" value="换一张" @click="imness()"/>
               </div>
             </div>
           </div>
           <!-- 确认修改按钮开始 -->
-          <div class="enter" style="margin-top: 0.3rem">
-            <input type="button" value="确认修改" />
+          <div class="enter" >
+            <input type="button" value="确认修改" @click="revamp()" />
           </div>
           <!-- 确认修改按钮结束 -->
         </form>
@@ -51,10 +53,65 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui'
 import Head from '@/page/header/Head'
+import axios from "axios"
 export default{
     name:'Reset',
-    components:{Head}
+    components:{Head},
+    data() {
+      return {
+        code:'',
+        username:'',
+        newpassword:'',
+        oldpassWord:'',
+        confirmpassword:'',
+        captcha_code:''
+      }
+    },
+    mounted () {
+       axios.post("https://elm.cangdu.org/v1/captchas",{}).then((res)=>{
+        //  console.log(res)
+         this.code=res.data.code
+       })
+    },
+   methods: {
+     imness(){
+       axios.post("https://elm.cangdu.org/v1/captchas",{}).then((res)=>{
+         console.log(res)
+         this.code=res.data.code
+       })
+     },
+     revamp(){
+        axios.post("http://elm.cangdu.org/v2/changepassword",{
+          username:this.username,
+          newpassword:this.newpassword,
+          oldpassWord:this.oldpassWord,
+          confirmpassword:this.confirmpassword,
+          captcha_code:this.captcha_code
+        }).then((res)=>{
+           if(res.data.status==0){
+               MessageBox(res.data.message)
+           }else{
+             let obj={
+               newpassword:res.data.newpassword
+            }
+             this.$store.commit("login",obj)
+           }
+           if(this.username==""){
+              MessageBox("请输入用户名")
+           }else if(this.newpassword==""){
+             MessageBox("请输入旧密码")
+           }else if(this.oldpassword==""){
+             MessageBox("请输入新密码")
+           }
+           else if(this.confirmpassword==""){
+             MessageBox("请输入确认密码")
+           }
+        
+        })
+     }
+   },
 }
 </script>
 
@@ -87,11 +144,13 @@ export default{
         margin-right: 0.4rem;
         /* background: red; */
         display: flex;
-        text-align: center;
+        text-align: center; position: relative;
+          top:-0.7rem;
         .numb{
           width: 50%;
           font-size:0.4rem;
           line-height:0.7rem;
+         
         }
         .change{
           width: 50%;
@@ -108,18 +167,17 @@ export default{
     }
     /* 确认修改按钮开始 */
     .enter{
-      width: 100%;
-      height:0.7rem;
-      text-align: center; 
+      
       input{
-        width:80%;
-        height:0.7rem;
+        width:90%;
+        height:0.5rem;
         background:#4CD964;
         color:white;
         border-radius:0.05rem;
-        font-size:0.25rem;
+        font-size:0.2rem;
+        margin-left: 5%;
       } 
-    }
+     }
     /* 确认修改按钮结束 */
   }
 }

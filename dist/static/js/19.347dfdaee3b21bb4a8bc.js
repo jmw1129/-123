@@ -1,0 +1,2 @@
+webpackJsonp([19],{"D/8Z":function(e,t){},WgAD:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={name:"Order",data:function(){return{}},components:{Foot:n("Ej4n").a}},o={render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",{staticClass:"order"},[t("Foot")],1)},staticRenderFns:[]};var a=n("C7Lr")(r,o,!1,function(e){n("D/8Z")},null,null);t.default=a.exports}});
+//# sourceMappingURL=19.347dfdaee3b21bb4a8bc.js.map

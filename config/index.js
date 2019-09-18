@@ -10,10 +10,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      // "/api/**": {
+      //   target: "http://172.16.109.45:81", //后端接口地址
+      //   // target: "http://192.168.43.128:81", //后端接口地址
+      //   changeOrigin: true, //是否允许跨越
+      //   pathRewrite: {
+      //     "^/api": "/" //重写,
+      //   }
+      // }
+    },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '192.168.43.244', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -50,7 +59,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
